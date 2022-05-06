@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+
 
 
 export default function RecipeCard({ temperature }){
@@ -11,6 +11,7 @@ export default function RecipeCard({ temperature }){
 
         //make an API call to load all the drinks
         useEffect(()=>{
+          console.log("I am here and I am "+temperature);
             axios.get(process.env.REACT_APP_BASE_URL+"/"+temperature)
             .then((res)=>{
                 setDrinks(res.data)
@@ -22,8 +23,9 @@ export default function RecipeCard({ temperature }){
            let count = 0;
            return (
               <Col>
+              <br/>
                 <Card>
-                  {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
+                  { <Card.Img variant="top" src={require("../assets/coffeeCupTwo.jpg")} style={{ aspectRatio:1/2}} /> }
                   <Card.Body>
                     <Card.Title>{drink.title}</Card.Title>
                     <Card.Text>
@@ -42,8 +44,7 @@ export default function RecipeCard({ temperature }){
      
         return(
             <div>
-                <Row xs={1} md={2} className="g-4"key={drink.id}>
-                </Row>
+              <h1>{temperature} Coffee Drinks</h1>
              {drinksJSX}
             </div>
         )

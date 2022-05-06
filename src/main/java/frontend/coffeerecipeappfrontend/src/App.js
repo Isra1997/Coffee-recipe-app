@@ -1,12 +1,22 @@
 import Container from "react-bootstrap/Container"
-import RecipeCard from "./Cards/RecipeCard"
-export default function MainPage(){
+import NavbarCoffeeApp from "./Navigation/NavbarCoffeeApp"
+import { Outlet } from "react-router-dom";
+import "./App.css";
+
+export default function App(){
   return(
-    <Container>
-      <h1>Cold Coffee Drinks</h1>
-      <RecipeCard temperature='cold'/>
-      <h1>Hot Coffee Drinks</h1>
-      <RecipeCard temperature='hot'/>
-    </Container>
+    <div>
+      <NavbarCoffeeApp/>
+      <Container>
+      <div className="Jumbotron">
+          <h1>👋 Hi there!</h1>
+          <p>
+            This is a website project where you can find all the coffee recipes that you might be interested in. 
+          </p>
+      </div>
+      <h1></h1>
+      <Outlet/>
+      </Container>
+    </div>
   )
 }
