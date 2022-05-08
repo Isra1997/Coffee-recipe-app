@@ -11,7 +11,7 @@ export default function App(){
       <div className="Jumbotron">
           <h1>👋 Hi there!</h1>
           <p>
-            This is a website project where you can find all the coffee recipes that you might be interested in. 
+            This is as project where you can find all the coffee recipes that you might be interested in. 
           </p>
       </div>
       <h1></h1>

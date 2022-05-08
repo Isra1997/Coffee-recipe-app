@@ -3,6 +3,10 @@ import { Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 
 
 export default function NavbarCoffeeApp(){
+
+  const getSearchQuery = (event) =>{
+ 
+  }
 return(
     <Navbar bg="light" expand="lg">
   <Container fluid>
