@@ -1,12 +1,31 @@
 import Navbar from 'react-bootstrap/Navbar';
 import { Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
+import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 
 
 export default function NavbarCoffeeApp(){
 
-  const getSearchQuery = (event) =>{
- 
+const [searchParameter,setSearchParameter] = useSearchParams();
+const [searchQuery,setSearchQuery] = useState("");
+
+const handleQuery = (event) =>{
+  event.preventDefault();
+  let query = event.target.value;
+  if(query){
+    setSearchQuery(query);
   }
+}
+
+const setFilter = (event) =>{
+  event.preventDefault();
+    if(searchQuery){
+      setSearchParameter({searchQuery});
+    }else{
+      setSearchParameter({});
+    }
+ }
+
 return(
     <Navbar bg="light" expand="lg">
   <Container fluid>
@@ -21,14 +40,15 @@ return(
         <Nav.Link href="/hot">Hot</Nav.Link>
         <Nav.Link href="/cold">Cold</Nav.Link>
       </Nav>
-      <Form className="d-flex">
+      <Form className="d-flex" onSubmit={setFilter}>
         <FormControl
           type="search"
           placeholder="Search"
           className="me-2"
           aria-label="Search"
+          onChange={handleQuery}
         />
-        <Button variant="outline-success">Search</Button>
+        <Button type='submit' variant="outline-success">Search</Button>
       </Form>
     </Navbar.Collapse>
   </Container>

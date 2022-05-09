@@ -16,6 +16,7 @@ export default function App(){
       </div>
       <h1></h1>
       <Outlet/>
+      <br/>
       </Container>
     </div>
   )

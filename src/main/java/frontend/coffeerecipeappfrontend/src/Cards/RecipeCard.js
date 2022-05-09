@@ -3,12 +3,16 @@ import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import {Col, Row} from 'react-bootstrap';
 import "./RecipeCard.css";
+import { useSearchParams } from "react-router-dom";
 
 
 
 export default function RecipeCard({ temperature }){
         //set the state of the component
         const [drinks,setDrinks] = useState([]);
+
+        //get the search parameters
+        const [searchParameter,setSearchParameter] = useSearchParams();
 
         //make an API call to load all the drinks
         useEffect(()=>{
@@ -19,7 +23,12 @@ export default function RecipeCard({ temperature }){
         },[temperature]);
 
         //create a JSX with the result of the API
-        const drinksJSX = drinks.filter(drink => (drink.description.toLowerCase().indexOf("koray") === -1)).map(drink =>{
+        const drinksJSX = drinks.filter(drink =>{
+          let filter = searchParameter.get("searchQuery");
+          if(!filter &&  drink.description.toLowerCase().indexOf("koray") === -1) return true;
+          let name = drink.title.toLowerCase();
+          return (name.startsWith(filter.toLocaleLowerCase()) && drink.description.toLowerCase().indexOf("koray") === -1)
+        }).map(drink =>{
            let count = 0;
            let cardImg = "";
            try{
